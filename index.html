@@ -44,7 +44,7 @@
             font-weight: bold;
         }
 
-        input[type="text"], input[type="email"], input[type="date"], textarea {
+        input[type="text"], input[type="email"], input[type="date"], textarea, select {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -107,6 +107,7 @@
             <span class="school-name">School Name</span>
         </div>
         <h2>Leave Application (अवकाश आवेदन)</h2>
+        
         <label for="teacher_name">Your Name (आपका नाम)</label>
         <input type="text" id="teacher_name" name="teacher_name" required>
 
@@ -119,9 +120,16 @@
         <label for="leave_end_date">Leave Till (अवकाश समाप्त)</label>
         <input type="date" id="leave_end_date" name="leave_end_date" required>
 
-        <label for="leave_reason">Reason for Leave (अवकाश का कारण)</label>
-        <textarea id="leave_reason" name="leave_reason" required></textarea>
+        <label for="leave_type">Leave Type (अवकाश का प्रकार)</label>
+        <select id="leave_type" name="leave_type" required>
+            <option value="" disabled selected>Select Leave Type</option>
+            <option value="CL">Casual Leave (CL)</option>
+            <option value="EL">Earned Leave (EL)</option>
+            <option value="ML">Medical Leave (ML)</option>
+        </select>
 
+        <label for="leave_reason">Reason for Leave (अवकाश का कारण)</label>
+        <textarea id="leave_reason" name="leave_reason" required></textarea>A
         <button type="submit">Submit Application (आवेदन जमा करें)</button>
         <p id="result"></p>
     </form>
