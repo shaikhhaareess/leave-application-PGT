@@ -123,6 +123,7 @@
             <option value="CL">Casual Leave (CL)</option>
             <option value="EL">Earned Leave (EL)</option>
             <option value="ML">Medical Leave (ML)</option>
+            <option value="PWL">Paid Leave without Leave (PWL)</option>
         </select>
 
         <label for="leave_reason">Reason for Leave (अवकाश का कारण)</label>
@@ -139,12 +140,7 @@
         document.getElementById('leave-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
             
-            // Validation
-            if (document.getElementById('leave_end_date').value <= document.getElementById('leave_start_date').value) {
-                alert("Leave end date should be after the start date.");
-                return;
-            }
-            
+          
             // Send the form data using EmailJS
             emailjs.sendForm('service_2degmsc', 'template_pd3b5va', this) // Replace with your EmailJS service ID and template ID
                 .then(function() {
