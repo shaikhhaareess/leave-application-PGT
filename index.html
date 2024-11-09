@@ -32,9 +32,6 @@
             margin-bottom: 20px; /* Space below the header */
         }
 
-        
-        }
-
         label {
             margin: 10px 0 5px;
             display: block;
@@ -95,13 +92,21 @@
                 transform: scale(1);
             }
         }
+
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 14px;
+            color: #333;
+            animation: fadeIn 1s ease-in-out;
+        }
     </style>
 </head>
 <body>
     <form id="leave-form">
         <div class="header">
             <img src="logo.jpeg" width="50" height="50" alt="School Logo">
-            
         </div>
         <h2>Leave Application (अवकाश आवेदन)</h2>
         
@@ -114,7 +119,7 @@
         <label for="leave_start_date">Leave From (अवकाश की शुरुआत)</label>
         <input type="date" id="leave_start_date" name="leave_start_date" required>
 
-        <label for="leave_end_date">Leave Till (अवकाश समाप्त)</label>
+        <label for="leave_end_date">Leave Till (अवकाश समाप्त)</label ```html
         <input type="date" id="leave_end_date" name="leave_end_date" required>
 
         <label for="leave_type">Leave Type (अवकाश का प्रकार)</label>
@@ -132,6 +137,10 @@
         <p id="result"></p>
     </form>
 
+    <div class="footer">
+        Made by Shaikh Haareess
+    </div>
+
     <script>
         (function(){
             emailjs.init("LalKkcAw4Z22cii-Y"); // Replace with your EmailJS public key
@@ -140,7 +149,6 @@
         document.getElementById('leave-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
             
-          
             // Send the form data using EmailJS
             emailjs.sendForm('service_2degmsc', 'template_pd3b5va', this) // Replace with your EmailJS service ID and template ID
                 .then(function() {
