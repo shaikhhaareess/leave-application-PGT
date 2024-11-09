@@ -38,7 +38,7 @@
             font-weight: bold;
         }
 
-        input[type="text"], input[type="email"], input[type="date"], textarea, select {
+        input[type="text"], input[type="email"], input[type="date"], textarea, select, input[type="number"] {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -119,14 +119,17 @@
         <label for="leave_start_date">Leave From (अवकाश की शुरुआत)</label>
         <input type="date" id="leave_start_date" name="leave_start_date" required>
 
-       <label for="leave_end_date">Leave Till (अवकाश समाप्त)</label>
-<input type="date" id="leave_end_date" name="leave_end_date" required>
+        <label for="leave_end_date">Leave Till (अवकाश समाप्त)</label>
+        <input type="date" id="leave_end_date" name="leave_end_date" required>
+
+        <label for="leave_days">Number of Leave Days (अवकाश के दिन)</label>
+        <input type="number" id="leave_days" name="leave_days" min="1" required>
 
         <label for="leave_type">Leave Type (अवकाश का प्रकार)</label>
         <select id="leave_type" name="leave_type" required>
             <option value="" disabled selected>Select Leave Type</option>
             <option value="CL">Casual Leave (CL)</option>
-            <option value="EL">Earned Leave (EL)</option>
+            <option value="EL">Earn ed Leave (EL)</option>
             <option value="ML">Medical Leave (ML)</option>
             <option value="PWL">Paid Leave without Leave (PWL)</option>
         </select>
