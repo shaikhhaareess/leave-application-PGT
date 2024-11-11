@@ -1,14 +1,21 @@
+
+
+Verify
+
+Open In Editor
+Edit
+Run
+Copy code
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Leave Application (शिक्षक अवकाश आवेदन)</title>
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #eaeaea; /* Light gray background */
+            background-color: #eaeaea;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,14 +29,6 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             width: 500px;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: center; /* Center the content */
-            margin-bottom: 20px; /* Space below the header */
         }
 
         label {
@@ -45,7 +44,6 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
-            animation: fadeIn 1s ease-in-out;
         }
 
         button {
@@ -56,58 +54,20 @@
             border-radius: 4px;
             cursor: pointer;
             width: 100%;
-            animation: pulse 2s infinite;
         }
 
         button:hover {
             background-color: #218838;
-            animation: none;
         }
 
         p {
             text-align: center;
             color: #333;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .footer {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            font-size: 14px;
-            color: #333;
-            animation: fadeIn 1s ease-in-out;
         }
     </style>
 </head>
 <body>
     <form id="leave-form">
-        <div class="header">
-            <img src="logo.jpeg" width="50" height="50" alt="School Logo">
-        </div>
         <h2>Leave Application (अवकाश आवेदन)</h2>
         
         <label for="teacher_name">Your Name (आपका नाम)</label>
@@ -125,42 +85,54 @@
         <label for="leave_days">Total Number of Leave Days (अवकाश के दिन)</label>
         <input type="number" id="leave_days" name="leave_days" min="1" required>
 
-     <label for="leave_type">Leave Type (अवकाश का प्रकार)</label>
-<select id="leave_type" name="leave_type" required>
-    <option value="" disabled selected>Select Leave Type</option>
-    <option value="CL">Casual Leave (CL)</option>
-    <option value="EL">Earned Leave (EL)</option>
-    <option value="LWP">Leave Without Pay (LWP)</option>
-    <option value="ML">Medical Leave (ML)</option>
-</select>
-
+        <label for="leave_type">Leave Type (अवकाश का प्रकार)</label>
+        <select id="leave_type" name="leave_type" required>
+            <option value="" disabled selected>Select Leave Type</option>
+            <option value="CL">Casual Leave (CL)</option>
+            <option value="EL">Earned Leave (EL)</option>
+            <option value="LWP">Leave Without Pay (LWP)</option>
+            <option value="ML">Medical Leave (ML)</option>
         </select>
 
         <label for="leave_reason">Reason for Leave (अवकाश का कारण)</label>
         <textarea id="leave_reason" name="leave_reason" required></textarea>
+        
         <button type="submit">Submit Application (आवेदन जमा करें)</button>
         <p id="result"></p>
     </form>
 
-    <div class="footer">
-     © Shaikh Haareess,Prakhar,Computer Dipartment,Aps Panagarh
-    </div>
-
     <script>
-        (function(){
-            emailjs.init("LalKkcAw4Z22cii-Y"); // Replace with your EmailJS public key
-        })();
-
         document.getElementById('leave-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
-            
-            // Send the form data using EmailJS
-            emailjs.sendForm('service_2degmsc', 'template_pd3b5va', this) // Replace with your EmailJS service ID and template ID
-                .then(function() {
-                    alert("Application submitted successfully!");
-                }, function(error) {
-                    alert("Error submitting application: " + error);
-                });
+
+            const teacher_name = document.getElementById('teacher_name').value;
+            const teacher_email = document.getElementById('teacher_email').value;
+            const leave_start_date = document.getElementById('leave_start_date').value;
+            const leave_end_date = document.getElementById('leave_end_date').value;
+            const leave_days = document.getElementBy id('leave_days').value;
+            const leave_type = document.getElementById('leave_type').value;
+            const leave_reason = document.getElementById('leave_reason').value;
+
+            // Create an application object
+            const application = {
+                teacher_name,
+                teacher_email,
+                leave_start_date,
+                leave_end_date,
+                leave_days,
+                leave_type,
+                leave_reason,
+                submitted_at: new Date().toISOString()
+            };
+
+            // Save the application to Local Storage
+            let applications = JSON.parse(localStorage.getItem('leaveApplications')) || [];
+            applications.push(application);
+            localStorage.setItem('leaveApplications', JSON.stringify(applications));
+
+            // Display success message
+            document.getElementById('result').innerText = 'Application submitted successfully!';
+            this.reset(); // Reset the form
         });
     </script>
 </body>
