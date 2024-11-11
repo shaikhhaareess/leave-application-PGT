@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Leave Application</title>
     <style>
+        body {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full height of the viewport */
+            margin: 0; /* Remove default margin */
+            background-color: #f7f7f7; /* Optional: light background color */
+        }
+
         #leave-form {
             background: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 500px;
+            width: 500px; /* Fixed width for the form */
             animation: fadeIn 1s ease-in-out;
         }
 
@@ -25,6 +34,7 @@
             margin: 10px 0 5px;
             display: block;
             font-weight: bold;
+            text-align: left; /* Align text to the left */
         }
 
         input[type="text"], input[type="email"], input[type="date"], textarea, select, input[type="number"] {
@@ -93,58 +103,64 @@
     </style>
 </head>
 <body>
-    <form id="leave-form">
-        <div class="header">
-            <h2>Leave Application (अवकाश आवेदन)</h2>
-        </div>
+    <center>
+        <form id="leave-form">
+            <div class="header">
+                <img src="logo.jpeg" width="50" height="50">
+                <h2>Leave Application (अवकाश आवेदन)</h2>
+            </div>
 
-        <label for="teacher_name">Your Name (आपका नाम)</label>
-        <input type="text" id="teacher_name" name="teacher_name" required>
+            <label for="teacher_name">Your Name (आपका नाम)</label>
+            <input type="text" id="teacher_name" name="teacher_name" required>
 
-        <label for="teacher_email">Your Email (आपका ईमेल)</label>
-        <input type="email" id="teacher_email" name="teacher_email" required>
+            <label for="teacher_email">Your Email (आपका ईमेल)</label>
+            <input type="email" id="teacher_email" name="teacher_email" required>
 
-        <label for="leave_start_date">Leave From (अवकाश की शुरुआत)</label>
-        <input type="date" id="leave_start_date" name="leave_start_date" required>
+            <label for="leave_start_date">Leave From (अवकाश की शुरुआत)</label>
+            <input type="date" id="leave_start_date" name="leave_start_date" required>
 
-        <label for="leave_end_date">Leave Till (अवकाश समाप्त)</label>
-        <input type="date" id="leave_end_date" name="leave_end_date" required>
+            <label for="leave_end_date">Leave Till (अवकाश समाप्त)</label>
+            <input type="date" id="leave_end_date" name="leave_end_date" required>
 
-        <label for="leave_days">Total Number of Leave Days (अवकाश के दिन)</label>
-        <input type="number" id="leave_days" name="leave_days" min="1" required>
+            <label for="leave_days">Total Number of Leave Days (अवकाश के दिन)</label>
+            <input type="number" id="leave_days" name="leave_days" min="1" required>
 
-        <label for="leave_type">Leave Type (अवकाश का प्रकार)</label>
-        <select id="leave_type" name="leave_type" required>
-            <option value="" disabled selected>Select Leave Type</option>
-            <option value="CL">Casual Leave (CL)</option>
-            <option value="EL">Earned Leave (EL)</option>
-            <option value="LWP">Leave Without Pay (LWP)</option>
-            <option value="ML">Medical Leave (ML)</option>
-        </select>
+            <label for="leave_type">Leave Type (अवकाश का प्रकार)</label>
+            <select id="leave_type" name="leave_type" required>
+                <option value="" disabled selected>Select Leave Type</option>
+ <option value="CL">Casual Leave (CL)</option>
+                <option value="EL">Earned Leave (EL)</option>
+                <option value="ML">Medical Leave (ML)</option>
+                <option value="PL">Paid Leave (PL)</option>
+            </select>
 
-        <label for="leave_reason">Reason for Leave (अवकाश का कारण)</label>
-        <textarea id="leave_reason" name="leave_reason" required></textarea>
+            <label for="leave_reason">Reason for Leave (अवकाश का कारण)</label>
+            <textarea id="leave_reason" name="leave_reason" rows="4" required></textarea>
 
-        <button type="submit">Submit Application (आवेदन जमा करें)</button>
-        <p id="result"></p>
-    </form <div class="footer">
-        © Shaikh Haareess, Computer Department,Aps Panagarh
-    </div>
+            <button type="submit">Submit Application (आवेदन भेजें)</button>
+        </form>
+        <p class="footer">© 2023 Teacher Leave Application</p>
+    </center>
 
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
     <script>
-        (function(){
-            emailjs.init("LalKkcAw4Z22cii-Y"); // Replace with your EmailJS public key
+        (function() {
+            emailjs.init("LalKkcAw4Z22cii-Y"); // Your EmailJS public key
         })();
 
         document.getElementById('leave-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
-            
-            // Send the form data using EmailJS
-            emailjs.sendForm('service_2degmsc', 'template_pd3b5va', this) // Replace with your EmailJS service ID and template ID
+
+            // Check if all required fields are filled
+            const formData = new FormData(this);
+            console.log("Form data:", Object.fromEntries(formData)); // Log form data for debugging
+
+            emailjs.sendForm('service_2degmsc', 'template_pd3b5va', this)
                 .then(function() {
                     alert("Application submitted successfully!");
                 }, function(error) {
-                    alert("Error submitting application: " + error);
+                    console.error("Error submitting application:", error);
+                    alert("Error submitting application: " + JSON.stringify(error));
                 });
         });
     </script>
