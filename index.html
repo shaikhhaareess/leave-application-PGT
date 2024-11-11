@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Leave Application</title>
     <style>
+        body {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full height of the viewport */
+            margin: 0; /* Remove default margin */
+            background-color: #f7f7f7; /* Optional: light background color */
+        }
+
         #leave-form {
             background: white;
             padding: 20px;
@@ -119,7 +128,7 @@
             <option value="CL">Casual Leave (CL)</option>
             <option value="EL">Earned Leave (EL)</option>
             <option value="LWP">Leave Without Pay (LWP)</option>
-            <option value="ML">Medical Leave (ML)</option>
+ <option value="ML">Medical Leave (ML)</option>
         </select>
 
         <label for="leave_reason">Reason for Leave (अवकाश का कारण)</label>
@@ -127,8 +136,10 @@
 
         <button type="submit">Submit Application (आवेदन जमा करें)</button>
         <p id="result"></p>
-    </form <div class="footer">
-        © Shaikh Haareess, Computer Department,Aps Panagarh
+    </form>
+    
+    <div class="footer">
+        © Shaikh Haareess, Prakhar, Computer Department, Aps Panagarh
     </div>
 
     <script>
