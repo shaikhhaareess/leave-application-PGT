@@ -153,7 +153,7 @@
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init("8qN1564YUchI1wZlh"); // Your EmailJS public key
+            emailjs.init("JZSqhztYT7mhqziIs"); // Your EmailJS public key
         })();
 
         document.getElementById('leave-form').addEventListener('submit', function(event) {
@@ -163,7 +163,7 @@
             const formData = new FormData(this);
             console.log("Form data:", Object.fromEntries(formData)); // Log form data for debugging
 
-            emailjs.sendForm('service_ax8t9yj', 'template_ug504wf', this)
+            emailjs.sendForm('service_s0530gz', 'template_21qo7fn', this)
                 .then(function() {
                     alert("Application submitted successfully!");
                 }, function(error) {
